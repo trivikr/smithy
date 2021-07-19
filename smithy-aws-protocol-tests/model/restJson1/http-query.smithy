@@ -29,7 +29,6 @@ operation AllQueryStringTypes {
 }
 
 apply AllQueryStringTypes @httpRequestTests([
-
     {
         id: "RestJsonAllQueryStringTypes",
         documentation: "Serializes query string parameters with all supported types",
@@ -106,9 +105,9 @@ apply AllQueryStringTypes @httpRequestTests([
             "QueryParamsStringKeyB=Bar",
         ],
         params: {
-            queryParamsMapOfStrings: {
-                "QueryParamsStringKeyA": "Foo",
-                "QueryParamsStringKeyB": "Bar",
+            queryParamsMapOfStringList: {
+                "QueryParamsStringKeyA": ["Foo"],
+                "QueryParamsStringKeyB": ["Bar"],
             },
         }
     },
@@ -176,6 +175,7 @@ apply AllQueryStringTypes @httpRequestTests([
     },
 ])
 
+@suppress(["HttpQueryParamsTrait"])
 structure AllQueryStringTypesInput {
     @httpQuery("String")
     queryString: String,
@@ -232,7 +232,7 @@ structure AllQueryStringTypesInput {
     queryEnumList: FooEnumList,
 
     @httpQueryParams
-    queryParamsMapOfStrings: StringMap,
+    queryParamsMapOfStringList: StringListMap,
 }
 
 /// This example uses a constant query string parameters and a label.
@@ -503,6 +503,7 @@ apply QueryPrecedence @httpRequestTests([
     }
 ])
 
+@suppress(["HttpQueryParamsTrait"])
 structure QueryPrecedenceInput {
     @httpQuery("bar")
     foo: String,
@@ -561,6 +562,7 @@ apply QueryParamsAsStringListMap @httpRequestTests([
     }
 ])
 
+@suppress(["HttpQueryParamsTrait"])
 structure QueryParamsAsStringListMapInput {
     @httpQuery("corge")
     qux: String,
