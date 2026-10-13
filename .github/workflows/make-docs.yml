@@ -89,7 +89,7 @@ jobs:
     - name: Copy artifacts
       run: |
         git pull
-        rm -r 1.0/ 2.0/
+        rm -rf 1.0/ 2.0/ blog/
         cp -R /tmp/smithy-docs/* .
         git config --global user.name "smithy-automation"
         git config --global user.email "github-smithy-automation@amazon.com"

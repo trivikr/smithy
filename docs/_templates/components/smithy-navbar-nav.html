@@ -1,11 +1,19 @@
 {# Top-header navigation that mirrors the smithy.io landing page nav
    (docs/landing/index.html). Keep these links in sync with the homepage:
-   Documentation / Examples / Awesome Smithy. The GitHub icon and theme
-   switcher are rendered separately via navbar_end. #}
+   Documentation / Blog / Examples / Awesome Smithy. The GitHub icon and theme
+   switcher are rendered separately via navbar_end.
+
+   This template is shared by the 1.0, 2.0, and blog builds. "Documentation"
+   links to the current project's root unless the project sets
+   html_context["smithy_docs_url"] (the blog does). "Blog" is root-relative
+   because the blog is a separate project published at /blog/. #}
 <nav class="bd-navbar-elements navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     <li class="nav-item">
-      <a class="nav-link nav-internal" href="{{ pathto(root_doc) }}">Documentation</a>
+      <a class="nav-link nav-internal" href="{{ smithy_docs_url or pathto(root_doc) }}">Documentation</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link nav-internal" href="/blog/">Blog</a>
     </li>
     <li class="nav-item">
       <a class="nav-link nav-external" href="https://github.com/smithy-lang/smithy-examples">Examples</a>

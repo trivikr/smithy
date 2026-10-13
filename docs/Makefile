@@ -17,22 +17,26 @@ html1:
 html2:
 	@source build/venv/bin/activate && $(SPHINXBUILD) -M html "source-2.0" "build/2.0" $(SPHINXOPTS) -W --keep-going -n $(O)
 
+htmlblog:
+	@source build/venv/bin/activate && $(SPHINXBUILD) -M html "source-blog" "build/blog" $(SPHINXOPTS) -W --keep-going -n $(O)
+
 llms-txt: html2
 	python3 generate_llms_txt.py
 
 test:
 	python3 -m unittest test_generate_llms_txt.py
 
-html: test html2 html1 merge-versions llms-txt
+html: test html2 html1 htmlblog merge-versions llms-txt
 
 serve:
 	npx http-server build/html
 
 merge-versions:
 	mkdir -p build/html
-	rm -rf "build/html/1.0" "build/html/2.0"
+	rm -rf "build/html/1.0" "build/html/2.0" "build/html/blog"
 	cp -R "build/1.0/html" "build/html/1.0"
 	cp -R "build/2.0/html" "build/html/2.0"
+	cp -R "build/blog/html" "build/html/blog"
 	cp -R root/* "build/html"
 	# Landing page: a single self-contained static page (no build step).
 	# Ship only the page + its assets (not README.md or the _og-card source).
@@ -45,4 +49,10 @@ openhtml:
 dev: install
 	@source build/venv/bin/activate && sphinx-autobuild "source-2.0" "build/2.0" $(SPHINXOPTS) $(O)
 
-.PHONY: Makefile clean test
+dev-blog: install
+	@source build/venv/bin/activate && sphinx-autobuild "source-blog" "build/blog" $(SPHINXOPTS) $(O)
+
+new-post:
+	@./new-post.sh "$(TITLE)" "$(CATEGORY)" "$(AUTHOR)"
+
+.PHONY: Makefile clean test new-post

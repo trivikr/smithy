@@ -8,4 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+{%- if smithy_feed_url %}
+<!-- Lets feed readers discover the blog's Atom feed (set in source-blog/conf.py). -->
+<link rel="alternate" type="application/atom+xml" title="Smithy Blog" href="{{ smithy_feed_url }}" />
+{%- endif %}
 {%- endblock -%}

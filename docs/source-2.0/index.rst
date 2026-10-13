@@ -134,6 +134,7 @@ See https://github.com/smithy-lang/awesome-smithy.
     :caption: Project
     :hidden:
 
+    Blog <https://smithy.io/blog/>
     Source code <https://github.com/smithy-lang/smithy>
     Awesome Smithy <https://github.com/smithy-lang/awesome-smithy>
     Smithy Examples <https://github.com/smithy-lang/smithy-examples>
